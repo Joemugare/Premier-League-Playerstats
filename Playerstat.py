@@ -10,7 +10,7 @@ def img_to_base64(img_path):
     return img_base64
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('C:/Users/ADMIN/Desktop/PYTHON CODES/Streamlit Projects/Premier League/premier_league_player.csv', encoding='latin-1')
+df = pd.read_csv('premier_league_player.csv', encoding='latin-1')
 
 # Set Streamlit page configuration
 img = Image.open(r"C:\Users\ADMIN\Desktop\PYTHON CODES\Streamlit Projects\Premier League\premier.png")
