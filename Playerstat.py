@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 import base64
+import os  # Import os module for path manipulation
 
 # Function to convert image to base64
 def img_to_base64(img_path):
@@ -9,11 +10,16 @@ def img_to_base64(img_path):
         img_base64 = base64.b64encode(img_file.read()).decode("utf-8")
     return img_base64
 
+# Get the current directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
 # Read the CSV file into a DataFrame
-df = pd.read_csv('premier_league_player.csv', encoding='latin-1')
+csv_file_path = os.path.join(current_dir, 'premier_league_player.csv')
+df = pd.read_csv(csv_file_path, encoding='latin-1')
 
 # Set Streamlit page configuration
-img = Image.open(r"C:\Users\ADMIN\Desktop\PYTHON CODES\Streamlit Projects\Premier League\premier.png")
+img_path = os.path.join(current_dir, 'premier.png')
+img = Image.open(img_path)
 st.set_page_config(page_title="Mugare Premier: Document Generation AI", page_icon=img)
 
 # Setting the title
@@ -37,7 +43,7 @@ if df_selection.empty:
     st.error("No data found for the selected player.")
 else:
     # Animated GIF path
-    anime_gif_path = "C:/Users/ADMIN/Desktop/PYTHON CODES/Streamlit Projects/Premier League/imgs/liongif.gif"
+    anime_gif_path = os.path.join(current_dir, 'imgs', 'liongif.gif')
 
     # Custom CSS for background image
     background = """
@@ -51,7 +57,7 @@ else:
     st.markdown(background, unsafe_allow_html=True)
 
     # Load and display sidebar image with glowing effect
-    img_path = "premier.png"  # Update with correct path to your sidebar image
+    img_path = os.path.join(current_dir, 'premier.png')  # Update with correct path to your sidebar image
     img_base64 = img_to_base64(img_path)
     st.sidebar.image(anime_gif_path, use_column_width=True)
 
@@ -69,7 +75,7 @@ else:
         player_info = df_selection[["Player", "Nation", "Pos", "Squad", "Born"]].iloc[0]
         st.write(player_info)
     with col2:
-        premier_league_img_path = r"C:\Users\ADMIN\Desktop\PYTHON CODES\Streamlit Projects\Premier League\imgs\premierleague.jpg"
+        premier_league_img_path = os.path.join(current_dir, 'imgs', 'premierleague.jpg')
         st.image(premier_league_img_path, use_column_width=False, width=450)  # Increase the width here
 
     # Displaying the selected stats inside columns
@@ -111,7 +117,7 @@ else:
     )
 
     # Load and display sidebar image with glowing effect
-    img_path = "imgs/premier.png"
+    img_path = os.path.join(current_dir, 'imgs', 'premier.png')
     img_base64 = img_to_base64(img_path)
     st.sidebar.markdown(
         f'<img src="data:image/png;base64,{img_base64}" class="cover-glow">',
