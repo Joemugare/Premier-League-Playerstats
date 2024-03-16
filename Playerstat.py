@@ -77,8 +77,16 @@ else:
         st.write(player_info)
 
     with col2:
-        lion_gif_path = os.path.join(current_dir, 'imgs', 'lion2gif.gif')
-        st.image(lion_gif_path, use_column_width=False, width=500)  # Adjust the width as per your requirement
+        st.subheader("Premier League Stadiums:")
+        lion_gif_path = os.path.join(current_dir, 'imgs', 'lion4gif.gif')
+        with open(lion_gif_path, "rb") as f:
+           gif_bytes = f.read()
+        st.markdown(f'<img src="data:image/gif;base64,{base64.b64encode(gif_bytes).decode()}" alt="lion gif" style="max-width: 100%; height: auto;">', unsafe_allow_html=True)
+
+
+
+
+
 
         # Displaying the selected stats inside columns
         st.subheader("Player Statistics:")
@@ -126,3 +134,4 @@ else:
             unsafe_allow_html=True,
         )
         st.sidebar.markdown("---")
+
