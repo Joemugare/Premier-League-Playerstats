@@ -23,7 +23,7 @@ img = Image.open(img_path)
 st.set_page_config(page_title="Mugare Premier: Document Generation AI", page_icon=img)
 
 # Setting the title
-title = "Player dashboard"
+title = "Premier League 2023/24 Player dashboard"
 # Displaying the title
 st.title(title)
 # Displaying a horizontal line to separate content
